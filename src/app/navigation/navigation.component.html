@@ -1,0 +1,19 @@
+<h1>Workspace with ngrx</h1>
+<h2>Current workspace id: {{ selectedWorkspaceId }}</h2>
+<div *ngFor="let workspace  of workspaces$ | async">
+  <app-tab [tab]="workspace.primaryTab" [classList]="['tab', 'tab-primary']"></app-tab>
+
+  <app-tab [tab]="workspace.secondaryTab" [classList]="['tab', 'tab-secondary']"></app-tab>
+</div>  
+
+<div class="commands">
+  <form>
+    <label for="name">Name: <input id="name" type="text"></label><br/>
+    <label for="url">Href: <input id="url" type="url"></label><br/>
+    <label for="type">Type: </label><select name="type" id="type">
+      <option value="top">Top</option>
+      <option value="secondary">Secondary</option>
+    </select>
+  </form>
+  <button>Add a Link</button>
+</div>

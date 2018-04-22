@@ -1,0 +1,10 @@
+.tab {
+    padding: 0;
+    margin: 10px;
+}
+
+.tab li {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #000;
+}
