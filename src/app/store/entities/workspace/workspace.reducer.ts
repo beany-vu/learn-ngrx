@@ -9,7 +9,7 @@ export interface State extends EntityState<Workspace> {
 export const adapter: EntityAdapter<Workspace> = createEntityAdapter<Workspace>();
 
 export const initialState: State = adapter.getInitialState({
-  ids: ['1', '2', '3'],
+  ids: ['1', '2'],
   entities: [
     {
       id: '1',
@@ -23,7 +23,7 @@ export const initialState: State = adapter.getInitialState({
                     {'number': '1', 'name': 'Sutunam VN ', 'href': 'http://sutunam.vn', 'classList': []}]
     },
   ],
-  selectedWorkspaceId: 1
+  selectedWorkspaceId: 2
 });
 
 export function reducer(
@@ -32,6 +32,7 @@ export function reducer(
 ): State {
   switch (action.type) {
     case WorkspaceActionTypes.AddWorkspace: {
+      console.log(state);
       return adapter.addOne(action.payload.workspace, state);
     }
 
@@ -69,6 +70,10 @@ export function reducer(
 
     case WorkspaceActionTypes.ClearWorkspaces: {
       return adapter.removeAll(state);
+    }
+
+    case WorkspaceActionTypes.SetCurrentWorkspace: {
+      return Object.assign({}, state, action.payload);
     }
 
     default: {

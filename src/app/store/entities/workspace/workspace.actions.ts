@@ -12,7 +12,8 @@ export enum WorkspaceActionTypes {
   UpdateWorkspaces = '[Workspace] Update Workspaces',
   DeleteWorkspace = '[Workspace] Delete Workspace',
   DeleteWorkspaces = '[Workspace] Delete Workspaces',
-  ClearWorkspaces = '[Workspace] Clear Workspaces'
+  ClearWorkspaces = '[Workspace] Clear Workspaces',
+  SetCurrentWorkspace = '[Workspace] Set Current Workpsace'
 }
 
 export class LoadWorkspaces implements Action {
@@ -73,6 +74,11 @@ export class ClearWorkspaces implements Action {
   readonly type = WorkspaceActionTypes.ClearWorkspaces;
 }
 
+export class SetCurrentWorkspace implements Action {
+  readonly type = WorkspaceActionTypes.SetCurrentWorkspace;
+  constructor(public payload: { selectedWorkspaceId: any }) {}
+}
+
 export type WorkspaceActions =
  LoadWorkspaces
  | AddWorkspace
@@ -83,4 +89,5 @@ export type WorkspaceActions =
  | UpdateWorkspaces
  | DeleteWorkspace
  | DeleteWorkspaces
- | ClearWorkspaces;
+ | ClearWorkspaces
+ | SetCurrentWorkspace;

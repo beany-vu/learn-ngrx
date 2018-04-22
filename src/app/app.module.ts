@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { reducer as workspaceReducer } from './store/entities/workspace/workspace.reducer';
+import * as fromWorkspace from './store/entities/workspace/workspace.reducer';
 import { NavigationModule } from './navigation/navigation.module';
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { NavigationModule } from './navigation/navigation.module';
   imports: [
     BrowserModule,
     StoreModule.forRoot({
-      workspaces: workspaceReducer
+      workspaces: fromWorkspace.reducer
     }),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 25}) : [],
     NavigationModule

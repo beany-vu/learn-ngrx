@@ -4,3 +4,8 @@
 .tab-secondary {
     border: 1px solid green;
 }
+
+.tab li {
+    display: inline-block;
+    padding: 5px 10px;
+}
