@@ -2,21 +2,22 @@
 <h2>Current workspace id: {{ selectedWorkspaceId }}</h2>
 <div class="workspace-actions">
   <div>
-    <h3>Select a workspace</h3>
+    <span>Select a workspace</span> 
     <select #selecteddWorkspace (change)="setCurrentWorkspace(selecteddWorkspace.value)">
       <option *ngFor="let workspace of workspaces$ | async" [selected]="workspace.id ==  selectedWorkspaceId" value="{{ workspace.id }}">{{ workspace.id }}</option>
     </select>
   </div>
 </div>
+<hr>
 <div *ngFor="let workspace  of workspaces$ | async" [ngClass]="{'workspace-wrapper': true,'current': workspace.id ==  selectedWorkspaceId}">
   <div>
     <button (click)="closeWorkspace(workspace.id)">X</button>
   </div>
-  <app-tab [tab]="workspace.primaryTab" [classList]="['tab', 'tab-primary']"></app-tab>
+  <app-tab [tab]="workspace.primaryTab" [type]="'primary'" [classList]="['tab', 'tab-primary']"></app-tab>
 
-  <app-tab [tab]="workspace.secondaryTab" [classList]="['tab', 'tab-secondary']"></app-tab>
+  <app-tab [tab]="workspace.secondaryTab" [type]="'secondary'" [classList]="['tab', 'tab-secondary']"></app-tab>
 </div>  
-
+<hr>
 <div class="commands">
   <form #f="ngForm" (ngSubmit)=onSubmit(f.value)>
       <fieldset>
@@ -24,14 +25,14 @@
         <label for="name">Name: <input id="name" name="name" type="text" ngModel required></label><br/>
         <label for="url">Href: <input id="url" name="url" type="url" ngModel required></label><br/>
         <label for="type">Type: </label><select name="type" id="type" ngModel required>
-          <option value="top">Top</option>
+          <option value="primary">Primary</option>
           <option value="secondary">Secondary</option>
         </select><br>
-        <label for="classNamet">Class Name: <input type="text" name="className" ngModel></label><br>
-        <button type="submit">Add a workspace</button>
+        <label for="classNamet">Class Name: <input type="text" name="className" ngModel></label><br><br>
+        <button type="submit">Add into the current workspace</button>
     </fieldset>
   </form>
 </div>
-<br><br>
+<hr>
 <button (click)="addWorkspace()">Add A New Workspace</button>
 <br><br>

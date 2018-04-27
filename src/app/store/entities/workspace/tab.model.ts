@@ -1,8 +1,9 @@
-import { TabItem } from './tabItem.model';
+import { TabItem, TabItemConcrete } from './tabItem.model';
 
 export interface Tab {
     id: number;
     tabItems: Array<TabItem>;
+    addTabItem(tabItem: TabItem): Array<TabItem>;
 }
 
 export class TabConcrete implements Tab {
@@ -15,4 +16,10 @@ export class TabConcrete implements Tab {
         this.tabItems = tabItems;
     }
 
+    addTabItem(tabItem: TabItem): Array<TabItem> {
+        if (tabItem instanceof TabItemConcrete) {
+            this.tabItems.push(tabItem);
+        }
+        return this.tabItems;
+    }
 }

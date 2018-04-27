@@ -6,6 +6,7 @@ export interface Workspace {
     id: number;
     primaryTab: Tab;
     secondaryTab: Tab;
+    getTab(keyWord: string): Tab;
 }
 
 export class WorkspaceConcrete implements Workspace {
@@ -18,5 +19,14 @@ export class WorkspaceConcrete implements Workspace {
         this.id = WorkspaceConcrete.idIncrement++;
         this.primaryTab = primaryTab;
         this.secondaryTab = secondaryTab;
+    }
+
+    getTab(keyWord: string): Tab {
+        switch (keyWord) {
+            case 'primary':
+                return <Tab> this.primaryTab;
+            default:
+                return <Tab> this.secondaryTab;
+        }
     }
 }

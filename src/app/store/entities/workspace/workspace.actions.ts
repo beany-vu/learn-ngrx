@@ -1,3 +1,5 @@
+import { TabItem } from './tabItem.model';
+import { Tab } from './tab.model';
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Workspace } from './workspace.model';
@@ -13,7 +15,9 @@ export enum WorkspaceActionTypes {
   DeleteWorkspace = '[Workspace] Delete Workspace',
   DeleteWorkspaces = '[Workspace] Delete Workspaces',
   ClearWorkspaces = '[Workspace] Clear Workspaces',
-  SetCurrentWorkspace = '[Workspace] Set Current Workpsace'
+  SetCurrentWorkspace = '[Workspace] Set Current Workpsace',
+  AddTabItemIntoWorkspace = '[Workspace] Add Tab Item Into Workspace',
+  RemoveTabItemOuttaWorkspace = '[Workspace] Remove Tab Item Outta Workspace'
 }
 
 export class LoadWorkspaces implements Action {
@@ -50,6 +54,7 @@ export class UpdateWorkspace implements Action {
   readonly type = WorkspaceActionTypes.UpdateWorkspace;
 
   constructor(public payload: { workspace: Update<Workspace> }) {}
+  // constructor( public id: string, public changes: Partial<Workspace>) {}
 }
 
 export class UpdateWorkspaces implements Action {
@@ -79,6 +84,16 @@ export class SetCurrentWorkspace implements Action {
   constructor(public payload: { selectedWorkspaceId: any }) {}
 }
 
+export class AddTabItemIntoWorkspace implements Action {
+  readonly type = WorkspaceActionTypes.AddTabItemIntoWorkspace;
+  constructor(public payload: {type: string, newItem: TabItem }) {}
+}
+
+export class RemoveTabItemOuttaWorkspace implements Action {
+  readonly type = WorkspaceActionTypes.RemoveTabItemOuttaWorkspace;
+  constructor(public payload: {type: string, href: string}) {}
+}
+
 export type WorkspaceActions =
  LoadWorkspaces
  | AddWorkspace
@@ -90,4 +105,6 @@ export type WorkspaceActions =
  | DeleteWorkspace
  | DeleteWorkspaces
  | ClearWorkspaces
- | SetCurrentWorkspace;
+ | SetCurrentWorkspace
+ | AddTabItemIntoWorkspace
+ | RemoveTabItemOuttaWorkspace ;

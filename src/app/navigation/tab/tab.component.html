@@ -1,5 +1,5 @@
 <ul class="classList | arrayToString"  [ngClass]="classList">
     <li *ngFor="let tabItem of tab">
-      <a href="{{ tabItem.href }}">{{ tabItem.name }}</a>
+      <a href="{{ tabItem.href }}">{{ tabItem.name }}</a> &nbsp;<button (click)="closeTabItem(tabItem.href)">x</button>
     </li>
   </ul>
